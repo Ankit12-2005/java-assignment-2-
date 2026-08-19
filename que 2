@@ -1,0 +1,62 @@
+import java.io.*;
+class BankAccount {
+    int accountNumber;
+    String accountHolderName;
+    double balance;
+    BankAccount() {
+        accountNumber = 0;
+        accountHolderName = "Unknown";
+        balance = 0;
+    }
+    BankAccount(int accountNumber, String accountHolderName, double balance) {
+        this.accountNumber = accountNumber;
+        this.accountHolderName = accountHolderName;
+        this.balance = balance;
+    }
+    void deposit(double amount) {
+        balance = balance + amount;
+    }
+    void withdraw(double amount) {
+        if (amount <= balance) {
+            balance = balance - amount;
+            System.out.println("Amount Withdrawn: " + amount);
+        } else {
+            System.out.println("Insufficient Balance");
+        }
+    }
+    void displayAccount() {
+        System.out.println("\nAccount Number : " + accountNumber);
+        System.out.println("Account Holder : " + accountHolderName);
+        System.out.println("Balance        : " + balance);
+    }
+}
+public class BankDemo {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(
+                new InputStreamReader(System.in));
+        BankAccount b1 = new BankAccount();
+        System.out.println("Enter details for Account 1");
+        System.out.print("Account Number: ");
+        b1.accountNumber = Integer.parseInt(br.readLine());
+        System.out.print("Account Holder Name: ");
+        b1.accountHolderName = br.readLine();
+        System.out.print("Balance: ");
+        b1.balance = Double.parseDouble(br.readLine());
+        System.out.print("Enter Deposit Amount: ");
+        double d1 = Double.parseDouble(br.readLine());
+        b1.deposit(d1);
+        System.out.print("Enter Withdraw Amount: ");
+        double w1 = Double.parseDouble(br.readLine());
+        b1.withdraw(w1);
+        b1.displayAccount();
+        System.out.println("\nEnter details for Account 2");
+        System.out.print("Account Number: ");
+        int no = Integer.parseInt(br.readLine());
+        System.out.print("Account Holder Name: ");
+        String name = br.readLine();
+        System.out.print("Balance: ");
+        double bal = Double.parseDouble(br.readLine());
+        BankAccount b2 = new BankAccount(no, name, bal);
+        b2.displayAccount();
+    }
+}
